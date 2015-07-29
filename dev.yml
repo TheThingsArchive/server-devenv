@@ -1,0 +1,22 @@
+croft:
+  build: ../croft
+  env_file: .dev
+  links:
+    - rabbitmq
+  ports:
+    - "8080:8080"
+    - "1700:1700/udp"
+
+rabbitmq:
+  image: rabbitmq:3-management
+  ports:
+    - "5672:5672"
+    - "15672:15672"
+  volumes:
+    - /var/lib/docker/rabbitmq:/data/mnesia
+
+jolie:
+  build: ../jolie
+  env_file: .dev
+  links:
+    - rabbitmq
