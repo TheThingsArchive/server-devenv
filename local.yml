@@ -1,3 +1,19 @@
+rabbitmq:
+  image: rabbitmq:3-management
+  ports:
+    - "5672:5672"
+    - "15672:15672"
+  volumes:
+    - /var/lib/docker/rabbitmq:/data/mnesia
+
+mongo:
+  build: ./build/mongo
+  volumes:
+    - /var/lib/docker/mongo/mongodb:data/db
+  command: mongod --smallfiles
+  ports:
+    - "27017:27017"
+
 croft:
   build: ../croft
   env_file: .local
@@ -7,16 +23,10 @@ croft:
     - "8080:8080"
     - "1700:1700/udp"
 
-rabbitmq:
-  image: rabbitmq:3-management
-  ports:
-    - "5672:5672"
-    - "15672:15672"
-  volumes:
-    - /var/lib/docker/rabbitmq:/data/mnesia
 
 jolie:
   build: ../jolie
   env_file: .local
   links:
     - rabbitmq
+    - mongo
