@@ -1,2 +1,2 @@
 AMQP_URI=amqp://guest:guest@rabbitmq:5672
-
+PRE_CREATE_DB="jolie"

@@ -7,6 +7,13 @@ croft:
     - "8080:8080"
     - "1700:1700/udp"
 
+jolie:
+  build: ../jolie
+  env_file: .local
+  links:
+    - rabbitmq
+    - influxdb
+
 rabbitmq:
   image: rabbitmq:3-management
   ports:
@@ -15,8 +22,12 @@ rabbitmq:
   volumes:
     - /var/lib/docker/rabbitmq:/data/mnesia
 
-jolie:
-  build: ../jolie
-  env_file: .local
-  links:
-    - rabbitmq
+influxdb:
+  image: tutum/influxdb
+  ports:
+    - "8083:8083"
+    - "8086:8086"
+    - "8090"
+    - "8099"
+  volumes:
+    - /var/lib/docker/influxdb:/data
