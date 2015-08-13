@@ -14,6 +14,14 @@ mongodb:
   ports:
     - "27017:27017"
 
+influxdb:
+  image: tutum/influxdb:latest
+  volumes:
+    - /var/lib/docker/influxdb:/data
+  ports: 
+    - "8083:8083"
+    - "8086:8086"
+
 croft:
   build: ../croft
   env_file: .local
@@ -23,7 +31,6 @@ croft:
     - "8080:8080"
     - "1700:1700/udp"
 
-
 jolie:
   build: ../jolie
   env_file: .local
@@ -32,3 +39,4 @@ jolie:
   links:
     - rabbitmq
     - mongodb
+    - influxdb
