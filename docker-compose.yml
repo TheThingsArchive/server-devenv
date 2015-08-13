@@ -33,10 +33,10 @@ croft:
 
 jolie:
   build: ../jolie
-  env_file: .local
   ports:
     - "8080:8080"
   links:
     - rabbitmq
     - mongodb
     - influxdb
+  env_file: ../jolie/.local
