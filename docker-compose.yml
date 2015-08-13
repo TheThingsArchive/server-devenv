@@ -6,8 +6,8 @@ rabbitmq:
   volumes:
     - /var/lib/docker/rabbitmq:/data/mnesia
 
-mongo:
-  build: ./build/mongo
+mongodb:
+  build: ./build/mongodb
   volumes:
     - /var/lib/docker/mongo/mongodb:data/db
   command: mongod --smallfiles
@@ -27,6 +27,8 @@ croft:
 jolie:
   build: ../jolie
   env_file: .local
+  ports:
+    - "8080:8080"
   links:
     - rabbitmq
-    - mongo
+    - mongodb
