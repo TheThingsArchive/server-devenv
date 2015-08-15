@@ -1,18 +1,10 @@
-croft:
-  build: ../croft
-  env_file: .dev
-  links:
-    - rabbitmq
+mongo:
+  build: ./build/mongo
+  volumes:
+    - /var/lib/docker/mongo/mongodb:data/db
+  command: mongod --smallfiles
   ports:
-    - "8080:8080"
-    - "1700:1700/udp"
-
-jolie:
-  build: ../jolie
-  env_file: .dev
-  links:
-    - rabbitmq
-    - influxdb
+    - "27017:27017"
 
 rabbitmq:
   image: rabbitmq:3-management
@@ -21,7 +13,7 @@ rabbitmq:
     - "15672:15672"
   volumes:
     - /var/lib/docker/rabbitmq:/data/mnesia
-
+      
 influxdb:
   image: tutum/influxdb
   ports:
@@ -31,3 +23,18 @@ influxdb:
     - "8099"
   volumes:
     - /var/lib/docker/influxdb:/data
+
+jolie:
+  build: ../jolie
+  env_file: .dev
+  links:
+    - rabbitmq
+    - influxdb
+croft:
+  build: ../croft
+  env_file: .dev
+  links:
+    - rabbitmq
+  ports:
+    - "8080:8080"
+    - "1700:1700/udp"
