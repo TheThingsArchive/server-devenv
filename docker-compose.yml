@@ -28,7 +28,6 @@ croft:
   links:
     - rabbitmq
   ports:
-    - "8080:8080"
     - "1700:1700/udp"
 
 jolie:
@@ -39,4 +38,4 @@ jolie:
     - rabbitmq
     - mongodb
     - influxdb
-  env_file: ../jolie/.local
+  env_file: .local
