@@ -24,18 +24,18 @@ influxdb:
 
 croft:
   build: ../croft
-  env_file: .local
-  links:
-    - rabbitmq
+  env_file: ../croft/.local
   ports:
     - "1700:1700/udp"
+  links:
+    - rabbitmq
 
 jolie:
   build: ../jolie
+  env_file: ../jolie/.local
   ports:
     - "8080:8080"
   links:
     - rabbitmq
     - mongodb
     - influxdb
-  env_file: .local
