@@ -1,5 +1,5 @@
-mongo:
-  build: ./build/mongo
+mongodb:
+  build: ./build/mongodb
   volumes:
     - /var/lib/docker/mongo/mongodb:data/db
   command: mongod --smallfiles
@@ -26,13 +26,15 @@ influxdb:
 
 jolie:
   build: ../jolie
-  env_file: .dev
+  env_file: ../jolie/.staging
   links:
     - rabbitmq
     - influxdb
+    - mongodb
+
 croft:
   build: ../croft
-  env_file: .dev
+  env_file: ../croft/.staging
   links:
     - rabbitmq
   ports:
