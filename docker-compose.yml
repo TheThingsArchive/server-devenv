@@ -39,3 +39,8 @@ jolie:
     - rabbitmq
     - mongodb
     - influxdb
+  env_file: ../jolie/.local
+
+dike: 
+  build: ../dike
+  env_file: ../dike/.local
