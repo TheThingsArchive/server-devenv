@@ -40,3 +40,9 @@ croft:
   ports:
     - "8080:8080"
     - "1700:1700/udp"
+
+dike: 
+  build: ../dike
+  env_file: ../dike/.staging
+  links:
+    - influxdb

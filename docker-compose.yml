@@ -44,3 +44,5 @@ jolie:
 dike: 
   build: ../dike
   env_file: ../dike/.local
+  links:
+    - influxdb
