@@ -15,7 +15,7 @@ mongodb:
     - "27017:27017"
 
 influxdb:
-  image: tutum/influxdb:latest
+  image: johanstokking/influxdb:latest
   volumes:
     - /var/lib/docker/influxdb:/data
   ports: 
@@ -40,9 +40,3 @@ jolie:
     - mongodb
     - influxdb
   env_file: ../jolie/.local
-
-dike: 
-  build: ../dike
-  env_file: ../dike/.local
-  links:
-    - influxdb

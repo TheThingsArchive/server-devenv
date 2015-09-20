@@ -15,7 +15,7 @@ rabbitmq:
     - /var/lib/docker/rabbitmq:/data/mnesia
       
 influxdb:
-  image: tutum/influxdb
+  image: johanstokking/influxdb:latest
   ports:
     - "8083:8083"
     - "8086:8086"
@@ -40,9 +40,3 @@ croft:
   ports:
     - "8080:8080"
     - "1700:1700/udp"
-
-dike: 
-  build: ../dike
-  env_file: ../dike/.staging
-  links:
-    - influxdb
