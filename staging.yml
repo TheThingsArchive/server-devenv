@@ -1,7 +1,7 @@
 mongodb:
   build: ./build/mongodb
   volumes:
-    - /var/lib/docker/mongo/mongodb:data/db
+    - /var/lib/docker/mongo/mongodb:/data/db
   command: mongod --smallfiles
   ports:
     - "27017:27017"
