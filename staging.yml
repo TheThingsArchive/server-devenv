@@ -13,24 +13,19 @@ rabbitmq:
     - "15672:15672"
   volumes:
     - /var/lib/docker/rabbitmq:/data/mnesia
-      
-influxdb:
-  image: johanstokking/influxdb:latest
+
+mosquitto:
+  image: ansi/mosquitto
   ports:
-    - "8083:8083"
-    - "8086:8086"
-    - "8090"
-    - "8099"
-  volumes:
-    - /var/lib/docker/influxdb:/data
+    - "1883:1883"
 
 jolie:
   build: ../jolie
   env_file: ../jolie/.staging
   links:
     - rabbitmq
-    - influxdb
     - mongodb
+    - mosquitto
 
 croft:
   build: ../croft
