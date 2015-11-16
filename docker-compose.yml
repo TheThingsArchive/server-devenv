@@ -14,6 +14,11 @@ mongodb:
   ports:
     - "27017:27017"
 
+mosquitto:
+  image: ansi/mosquitto
+  ports:
+    - "1883:1883"
+
 croft:
   build: ../croft
   env_file: ../croft/.local
@@ -25,9 +30,7 @@ croft:
 jolie:
   build: ../jolie
   env_file: ../jolie/.local
-  ports:
-    - "8080:8080"
   links:
     - rabbitmq
     - mongodb
-  env_file: ../jolie/.local
+    - mosquitto

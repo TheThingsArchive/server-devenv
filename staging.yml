@@ -13,13 +13,19 @@ rabbitmq:
     - "15672:15672"
   volumes:
     - /var/lib/docker/rabbitmq:/data/mnesia
-      
+
+mosquitto:
+  image: ansi/mosquitto
+  ports:
+    - "1883:1883"
+
 jolie:
   build: ../jolie
   env_file: ../jolie/.staging
   links:
     - rabbitmq
     - mongodb
+    - mosquitto
 
 croft:
   build: ../croft
