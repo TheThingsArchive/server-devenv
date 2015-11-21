@@ -34,3 +34,8 @@ jolie:
     - rabbitmq
     - mongodb
     - mosquitto
+
+nodered:
+  image: cpswan/node-red
+  ports:
+    - "1880:1880"
