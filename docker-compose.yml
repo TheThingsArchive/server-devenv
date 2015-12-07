@@ -37,5 +37,7 @@ jolie:
 
 nodered:
   image: cpswan/node-red
+  volumes:
+    - /var/lib/docker/node-red/:/root/.node-red/
   ports:
     - "1880:1880"
