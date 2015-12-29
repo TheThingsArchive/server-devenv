@@ -1,7 +1,7 @@
 mongodb:
   build: ./build/mongodb
   volumes:
-    - /var/lib/docker/mongo/mongodb:/data/db
+    - /data/mongo/mongodb:/data/db
   command: mongod --smallfiles
   ports:
     - "27017:27017"
@@ -12,7 +12,7 @@ rabbitmq:
     - "5672:5672"
     - "15672:15672"
   volumes:
-    - /var/lib/docker/rabbitmq:/data/mnesia
+    - /data/rabbitmq:/data/mnesia
 
 mosquitto:
   image: ansi/mosquitto
@@ -38,5 +38,7 @@ croft:
 
 nodered:
   image: cpswan/node-red
+  volumes:
+    - /data/node-red/:/root/.node-red/
   ports:
     - "1880:1880"
