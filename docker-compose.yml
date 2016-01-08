@@ -22,6 +22,7 @@ mosquitto:
 croft:
   build: ../croft
   env_file: ../croft/.local
+  restart: always
   ports:
     - "1700:1700/udp"
   links:
